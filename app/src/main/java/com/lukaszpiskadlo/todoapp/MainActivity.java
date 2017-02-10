@@ -1,13 +1,17 @@
 package com.lukaszpiskadlo.todoapp;
 
 import android.content.res.Configuration;
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+
+import com.lukaszpiskadlo.todoapp.tasks.TasksFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -33,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
         setDrawer(navView);
+        setFragment(new TasksFragment());
     }
 
     private void setDrawer(NavigationView navView) {
@@ -54,5 +59,12 @@ public class MainActivity extends AppCompatActivity {
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         drawerToggle.onConfigurationChanged(newConfig);
+    }
+
+    private void setFragment(Fragment fragment) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction()
+                .replace(R.id.content_frame, fragment)
+                .commit();
     }
 }
