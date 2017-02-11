@@ -4,9 +4,11 @@
     android:id="@+id/toolbar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorPrimaryDark"
+    android:elevation="4dp"
     android:fitsSystemWindows="true"
     android:minHeight="?attr/actionBarSize"
-    tools:showIn="@layout/activity_main">
+    android:theme="@style/ToolbarTheme"
+    tools:showIn="@layout/activity_main"
+    tools:targetApi="lollipop">
 
 </android.support.v7.widget.Toolbar>
