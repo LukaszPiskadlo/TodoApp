@@ -9,18 +9,26 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.lukaszpiskadlo.todoapp.R;
+import com.lukaszpiskadlo.todoapp.di.component.DaggerFragmentComponent;
 import com.lukaszpiskadlo.todoapp.model.Task;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class TasksFragment extends Fragment {
+public class TasksFragment extends Fragment implements TasksView {
 
     @BindView(R.id.tasks_view)
     RecyclerView tasksView;
+
+    @Inject
+    TasksPresenter presenter;
+
+    @Inject
+    TaskAdapter adapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -33,17 +41,23 @@ public class TasksFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_tasks, container, false);
         ButterKnife.bind(this, view);
 
+        DaggerFragmentComponent.create()
+                .inject(this);
+
         setRecyclerView();
+        presenter.setView(this);
+        presenter.loadTasks();
         return view;
     }
 
     private void setRecyclerView() {
-        List<Task> tasks = new ArrayList<>();
-        for (int i = 0; i < 30; i++) {
-            tasks.add(new Task("Item " + i));
-        }
-
-        tasksView.setAdapter(new TaskAdapter(tasks));
+        tasksView.setAdapter(adapter);
         tasksView.setLayoutManager(new LinearLayoutManager(getContext()));
+        tasksView.setHasFixedSize(true);
+    }
+
+    @Override
+    public void showTasks(List<Task> tasks) {
+        adapter.setTasks(tasks);
     }
 }

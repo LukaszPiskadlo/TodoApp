@@ -14,12 +14,17 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder> {
+public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder> {
 
     private List<Task> tasks;
 
-    TaskAdapter(List<Task> tasks) {
+    public TaskAdapter(List<Task> tasks) {
         this.tasks = tasks;
+    }
+
+    void setTasks(List<Task> tasks) {
+        this.tasks = tasks;
+        notifyDataSetChanged();
     }
 
     @Override
@@ -31,7 +36,8 @@ class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder> {
 
     @Override
     public void onBindViewHolder(TaskViewHolder holder, int position) {
-        holder.desc.setText(tasks.get(position).getDesc());
+        holder.name.setText(tasks.get(position).getName());
+        holder.description.setText(tasks.get(position).getDescription());
     }
 
     @Override
@@ -41,8 +47,11 @@ class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder> {
 
     static class TaskViewHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.task_desc)
-        TextView desc;
+        @BindView(R.id.task_name)
+        TextView name;
+
+        @BindView(R.id.task_description)
+        TextView description;
 
         TaskViewHolder(View itemView) {
             super(itemView);
