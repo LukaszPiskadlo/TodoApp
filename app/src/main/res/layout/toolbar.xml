@@ -8,7 +8,6 @@
     android:fitsSystemWindows="true"
     android:minHeight="?attr/actionBarSize"
     android:theme="@style/ToolbarTheme"
-    tools:showIn="@layout/activity_main"
-    tools:targetApi="lollipop">
+    tools:showIn="@layout/activity_main">
 
 </android.support.v7.widget.Toolbar>
