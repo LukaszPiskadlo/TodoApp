@@ -17,4 +17,10 @@ public class TasksPresenter extends BasePresenter<TasksView> {
             getView().showTasks(tasks);
         }
     }
+
+    void searchTasks() {
+    }
+
+    void filterTasks() {
+    }
 }

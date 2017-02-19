@@ -7,7 +7,7 @@
     app:cardUseCompatPadding="true"
     card_view:cardCornerRadius="2dp"
     card_view:cardElevation="2dp"
-    card_view:contentPadding="16dp">
+    card_view:contentPadding="@dimen/default_padding">
 
     <LinearLayout
         android:layout_width="match_parent"
