@@ -8,8 +8,13 @@ import java.util.List;
 
 public class TasksPresenter extends BasePresenter<TasksView> {
 
+    private List<Task> tasks;
+
+    public TasksPresenter() {
+        tasks = new ArrayList<>();
+    }
+
     void loadTasks() {
-        List<Task> tasks = new ArrayList<>();
         for (int i = 0; i < 30; i++) {
             tasks.add(new Task.Builder().name("Task " + i).description("Desc").build());
         }
@@ -22,5 +27,11 @@ public class TasksPresenter extends BasePresenter<TasksView> {
     }
 
     void filterTasks() {
+    }
+
+    void showTaskDetails(int position) {
+    }
+
+    void showAddNewTask() {
     }
 }
