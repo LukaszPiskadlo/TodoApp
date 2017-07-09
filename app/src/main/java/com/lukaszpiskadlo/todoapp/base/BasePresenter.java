@@ -6,8 +6,12 @@ public abstract class BasePresenter<V extends BaseView> {
 
     private V view;
 
-    public void setView(@NonNull V view) {
+    public void attach(@NonNull V view) {
         this.view = view;
+    }
+
+    public void detach() {
+        view = null;
     }
 
     protected V getView() {

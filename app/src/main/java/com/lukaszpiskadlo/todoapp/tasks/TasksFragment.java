@@ -48,7 +48,7 @@ public class TasksFragment extends Fragment implements TasksView {
         DaggerFragmentComponent.create()
                 .inject(this);
 
-        presenter.setView(this);
+        presenter.attach(this);
         setHasOptionsMenu(true);
         setRecyclerView();
         presenter.loadTasks();
@@ -61,6 +61,12 @@ public class TasksFragment extends Fragment implements TasksView {
         tasksView.setAdapter(adapter);
         tasksView.setLayoutManager(new LinearLayoutManager(getContext()));
         tasksView.setHasFixedSize(true);
+    }
+
+    @Override
+    public void onDestroyView() {
+        presenter.detach();
+        super.onDestroyView();
     }
 
     @Override
